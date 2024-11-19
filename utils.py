@@ -9,7 +9,6 @@ import numpy as np
 from scipy.io.wavfile import read
 import torch
 
-import torch.nn.functional as F
 
 MATPLOTLIB_FLAG = False
 
@@ -39,11 +38,8 @@ def load_checkpoint(checkpoint_path, model, optimizer=None):
   if hasattr(model, 'module'):
     model.module.load_state_dict(new_state_dict)
   else:
-    checkpoint_weights = new_state_dict["enc_q.pre.weight"]
-    checkpoint_weights = F.interpolate(checkpoint_weights, size=(386, 1), mode='nearest')  # Resize weights
-    new_state_dict["enc_q.pre.weight"] = checkpoint_weights
     model.load_state_dict(new_state_dict)
-    
+
   logger.info("Loaded checkpoint '{}' (iteration {})" .format(
     checkpoint_path, iteration))
   return model, optimizer, learning_rate, iteration
