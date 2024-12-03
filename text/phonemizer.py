@@ -3,6 +3,7 @@ import re
 
 prf = Profile(
     {'Grapheme': 'a', 'mapping': 'a'},
+    {'Grapheme': 'à', 'mapping': 'ɑ'},
     {'Grapheme': 'b', 'mapping': 'b'},
     {'Grapheme': 'd', 'mapping': 'd'},
     {'Grapheme': 'e', 'mapping': 'e'},
